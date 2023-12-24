@@ -1,9 +1,12 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import Filter from './components/Filter';
+import AddContact from './components/AddContact';
+import RenderedContacts from './components/RenderedContacts';
 
 /*2.6: The Phonebook Step1 (Done)
 Decided to use the id method learned in the coursework and not use the name as key. 
 Does not make sense to me because maybe it's possible the name can change in a later version.
-Note for myself: logging stuff to the console really helps, use .map to log the state.
+Note for myself: logging stuff to the console really helps, use .map to log the entire array state.
 2.7: The Phonebook Step2 (Done)
 Note for myself: .some is a good way to check if the callback function returns true for one or more elements, else it returns false.
 2.8: The Phonebook Step3(Done)
@@ -40,17 +43,17 @@ const App = () => {
   }
 
   const handleNameChange = (event) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setNewName(event.target.value)
   }
 
   const handleNumberChange = (event) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setNewNumber(event.target.value)
   }
 
   const handleSearchChange = (event) => {
-    console.log(event.target.value)
+    //console.log(event.target.value)
     setShowPerson(event.target.value)
   }
 
@@ -65,34 +68,23 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      filter shown with<input 
-        onChange={handleSearchChange}
-        value={showPerson}
-
-      >
-      </input>
+      filter shown with
+      <Filter 
+        handleSearchChange={handleSearchChange}
+        showPerson={showPerson}
+      /> 
       <h2>Add a new </h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input 
-          value={newName} 
-          onChange={handleNameChange} />
-        </div>
-        <div>
-          number: <input 
-          value={newNumber} 
-          onChange={handleNumberChange} />
-        </div>
-        <div>
-          <button type="submit">add</button>
-        </div>
-      </form>
+      <AddContact
+        addName={addName}
+        handleNameChange={handleNameChange}
+        handleNumberChange={handleNumberChange}
+        newName={newName}
+        newNumber={newNumber}
+      />  
       <h2>Numbers</h2>
-      <ul>
-      {namesToShow.map((person) => (
-      <li key={person.id}>{person.name} {person.number}</li>
-      ))}
-      </ul>
+      <RenderedContacts 
+        namesToShow={namesToShow}
+      />
     </div>
   )
 }
