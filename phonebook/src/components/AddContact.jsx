@@ -6,11 +6,13 @@ const AddContact = (props) => {
         <form onSubmit={props.addName}>
         <div>
           name: <input 
+           id="nameInput"
           value={props.newName} 
           onChange={props.handleNameChange} />
         </div>
         <div>
           number: <input 
+          id="numberInput"
           value={props.newNumber} 
           onChange={props.handleNumberChange} />
         </div>
@@ -18,7 +20,7 @@ const AddContact = (props) => {
           <button type="submit">add</button>
         </div>
       </form> 
-    )
+    );
 }
 
 export default AddContact;

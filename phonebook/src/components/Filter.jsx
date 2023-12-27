@@ -6,6 +6,7 @@ const Filter = (props) => {
         <input 
             onChange={props.handleSearchChange}
             value={props.showPerson}
+            id="filterInput"
         >
         </input>
     )
