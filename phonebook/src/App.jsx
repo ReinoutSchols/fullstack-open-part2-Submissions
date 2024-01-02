@@ -54,6 +54,7 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault();
     const nameObject = {name: newName, id: uuidv4(), number:newNumber};
+    console.log('Sending POST request with data:', nameObject);
     if (persons.some(person => person.name === newName && person.number !== newNumber)) {
       if (window.confirm(`${nameObject.name} is already added to phonebook, replace the old number with a new one?`)) {
         const existingPerson = persons.find(person => person.name === newName);
